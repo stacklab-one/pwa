@@ -1,0 +1,21 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# indentation
+[*]
+indent_style = space
+indent_size = 4
+
+# quotes
+[*.{js,jsx,ts,tsx,json}]
+quote_type = double
+
+# trailing comma
+[*.{js,jsx,ts,tsx,json,css,scss,html,md}]
+insert_final_newline = true
+
+# semicolon
+[*.{js,jsx,ts,tsx,css,scss}]
+end_of_line = lf

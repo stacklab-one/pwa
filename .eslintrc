@@ -1,0 +1,60 @@
+{
+    "root": true,
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/recommended",
+        "@vue/eslint-config-typescript"
+    ],
+    /*     "parserOptions": {
+        "parser": "babel-eslint"
+    }, */
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "comma-dangle": [
+            "error",
+            "always-multiline"
+        ],
+        "quotes": [
+            "error",
+            "double"
+        ],
+        "vue/max-attributes-per-line": [
+            "error",
+            {
+                "singleline": 1,
+                "multiline": 1
+            }
+        ],
+        "vue/html-indent": [
+            "error",
+            4,
+            {
+                "attribute": 1,
+                "baseIndent": 1,
+                "closeBracket": 0,
+                "alignAttributesVertically": true,
+                "ignores": []
+            }
+        ],
+        "vue/multi-word-component-names": [
+            "off",
+            {
+                "ignores": []
+            }
+        ],
+        "no-undef": [
+            "off"
+        ]
+    }
+}
