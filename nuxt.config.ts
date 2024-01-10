@@ -5,6 +5,7 @@ export default defineNuxtConfig({
         "@vueuse/nuxt",
         "nuxt-icon",
         "@nuxt/ui",
+        "nuxt-graphql-client",
         [
             "@nuxtjs/eslint-module", 
             {
@@ -12,4 +13,15 @@ export default defineNuxtConfig({
             },
         ],
     ],
+    runtimeConfig: {
+        "graphql-client": {
+            clients: {
+                default: {
+                    schema: "graphql/schema.graphql",
+                },
+            },
+        },
+    },
+    "graphql-client": {
+    },
 });

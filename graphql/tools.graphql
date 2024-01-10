@@ -1,0 +1,38 @@
+query getAllToolsForPreview {
+    tools {
+        id
+        name
+        description
+        iconIdentifier
+    }
+}
+
+query getToolById($id: uuid!) {
+    toolsByPk(id: $id) {
+        id
+        name
+        description
+        iconIdentifier
+        ogData
+        license
+        websiteUrl
+        documentationUrl
+        repositoryUrl
+        toolData(limit: 1, orderBy: {
+            createdAt: DESC_NULLS_LAST
+        }) {
+            id
+            stars
+            openIssues
+            downloads
+            forks
+        }
+        categoryTools {
+            id
+            category {
+                id
+                name
+            }
+        }
+    }
+}

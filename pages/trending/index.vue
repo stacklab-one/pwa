@@ -7,7 +7,7 @@ definePageMeta({
 </script>
 
 <template>
-    <div class="px-20">
-        <LandingHero />
+    <div>
+        <span>trending</span>
     </div>
 </template>

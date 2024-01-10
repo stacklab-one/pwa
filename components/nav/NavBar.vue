@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type NavButton } from "./Button.vue";
+import { type NavButton } from "./NavBarButton.vue";
 
 const navButtons = ref<NavButton[]>([
     {
@@ -20,16 +20,16 @@ const navButtons = ref<NavButton[]>([
 </script>
 
 <template>
-    <div class="w-full h-20 flex items-center justify-between px-8 bg-background">
-        <div>
+    <div class="w-full h-20 flex items-center justify-between px-12 bg-background">
+        <NuxtLink to="/">
             <span>Stacklab logo</span>
-        </div>
+        </NuxtLink>
         <div class="flex items-center justify-evenly gap-8">
             <div
                 v-for="button in navButtons"
                 :key="button.href"
             >
-                <NavButton v-bind="button" />
+                <NavBarButton v-bind="button" />
             </div>
         </div>
         <div>
