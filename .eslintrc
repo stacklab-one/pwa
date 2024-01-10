@@ -9,9 +9,6 @@
         "plugin:vue/recommended",
         "@vue/eslint-config-typescript"
     ],
-    /*     "parserOptions": {
-        "parser": "babel-eslint"
-    }, */
     "rules": {
         "indent": [
             "error",
