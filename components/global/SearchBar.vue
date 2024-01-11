@@ -26,14 +26,23 @@ onKeyDown("k", (event) => {
 </script>
 
 <template>
-    <div class="bg-mineshaft py-2 px-4 rounded-lg flex items-center">
-        <input
+    <div class="flex items-center">
+        <!-- <input
             ref="input"
             v-model="searchValue"
             type="text"
             class="bg-transparent font-light outline-none text-white w-full"
             :placeholder="props.placeholder"
-        >
+        > -->
+        <UInput
+            icon="i-heroicons-magnifying-glass-20-solid"
+            size="lg"
+            color="white"
+            class="w-full"
+            :trailing="false"
+            :placeholder="props.placeholder"
+        />
+
         <div class="scale-110 w-12">
             <UKbd>{{ metaSymbol }}</UKbd>
             <UKbd>K</UKbd>

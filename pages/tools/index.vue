@@ -25,7 +25,7 @@ function getToolSlug(tool: GetAllToolsForPreviewQuery["tools"][number]): string 
             class="sticky top-0 bg-background shadow-2xl"
             :is-searchable="true"
         />
-        <div class="flex items-start justify-start flex-wrap gap-8 mt-8">
+        <div class="grid grid-cols-[1fr_1fr_1fr_1fr] gap-8 mt-8">
             <div
                 v-for="tool of tools.tools"
                 :key="tool.id"

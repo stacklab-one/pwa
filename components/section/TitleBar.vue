@@ -18,7 +18,7 @@ const searchValue = defineModel<string>("searchValue");
 </script>
 
 <template>
-    <div class="py-6 flex items-center justify-between border-b-[1px] border-b-gray-500">
+    <div class="py-6 flex items-center justify-between border-b-[1px] border-b-gray-500 z-10">
         <div class="flex items-center gap-6">
             <slot name="icon">
                 <Icon

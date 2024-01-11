@@ -4,6 +4,12 @@ query getAllToolsForPreview {
         name
         description
         iconIdentifier
+        tags
+        toolData(limit: 1, orderBy: {
+            createdAt: DESC_NULLS_LAST
+        }) {
+            stars
+        }
     }
 }
 
