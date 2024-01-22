@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { GetAllToolsForPreviewQuery } from "#gql";
+import type { GetToolsForPreviewQuery } from "#gql";
 import { useMouseInElement } from "@vueuse/core";
 
 
 type Props = {
-    tool: GetAllToolsForPreviewQuery["tools"][number];
+    tool: GetToolsForPreviewQuery["tools"][number];
 }
 
 const props = defineProps<Props>();
@@ -32,7 +32,7 @@ const { isOutside } = useMouseInElement(container);
 <template>
     <div 
         ref="container"
-        class="group flex flex-col items-start justify-start bg-mineshaft hover:bg-mineshaft-600 overflow-hidden rounded-lg shadow-xl transition-all duration-150"
+        class="group grid grid-rows-[min-content_1fr_5rem] bg-mineshaft hover:bg-mineshaft-600 overflow-hidden rounded-lg shadow-xl transition-all duration-150"
     >
         <div class="h-16 flex justify-between border-b-[0.5px] border-b-mineshaft-200 w-full px-4">
             <div class="flex items-center gap-2">
@@ -67,18 +67,20 @@ const { isOutside } = useMouseInElement(container);
                 </p>
             </div>
         </div>
-        <div class="p-3 h-28 overflow-hidden">
-            <p class="text-ellipsis h-20 text-mineshaft-100 font-light">
+        <div class="p-3 overflow-hidden">
+            <p class="text-ellipsis text-mineshaft-100 font-light">
                 {{ tool.description }}
             </p>
         </div>
-        <div class="min-h-12 w-full p-3 flex flex-wrap gap-2 items-start justify-start bg-mineshaft-800 group-hover:bg-mineshaft-700 transition-colors duration-150">
+        <div class="min-h-12 w-full p-3 flex flex-wrap gap-2 items-start justify-start bg-mineshaft-800 group-hover:bg-mineshaft-700 transition-colors duration-150 overflow-y-auto">
             <div
-                v-for="tag of tool.tags"
-                :key="tag"
+                v-for="toolTag of tool.toolTags"
+                :key="toolTag.id"
                 @click.stop.prevent
             >
-                <ToolTag :tag="tag" />
+                <TagPreview
+                    :tag="toolTag.tag.tag"
+                />
             </div>
         </div>
     </div>

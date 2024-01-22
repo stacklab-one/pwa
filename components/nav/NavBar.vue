@@ -33,10 +33,12 @@ const navButtons = ref<NavButton[]>([
             </div>
         </div>
         <div>
-            <Icon
-                name="icon-park-outline:user"
-                class="text-xl"
-            />
+            <NuxtLink to="/account">
+                <Icon
+                    name="icon-park-outline:user"
+                    class="text-xl"
+                />
+            </NuxtLink>
         </div>
     </div>
 </template>

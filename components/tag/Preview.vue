@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+
+
 type Props = {
     tag: string;
 }
@@ -13,6 +15,6 @@ const props = defineProps<Props>();
         variant="soft"
     >
         <Icon name="clarity:hashtag-solid" />
-        <span>{{ props.tag }}</span>
+        <span class="text-xs">{{ props.tag }}</span>
     </UButton>
 </template>

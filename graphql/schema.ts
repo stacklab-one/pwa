@@ -34,13 +34,24 @@ export type BooleanComparisonExp = {
 export type Categories = {
   __typename?: "Categories";
   /** An array relationship */
+  categoryTags: Array<CategoryTags>;
+  /** An array relationship */
   categoryTools: Array<CategoryTools>;
   createdAt?: Maybe<Scalars["timestamptz"]["output"]>;
   description: Scalars["String"]["output"];
   id: Scalars["uuid"]["output"];
   name: Scalars["String"]["output"];
-  tags: Scalars["jsonb"]["output"];
   updatedAt?: Maybe<Scalars["timestamptz"]["output"]>;
+};
+
+
+/** columns and relationships of "categories" */
+export type CategoriesCategoryTagsArgs = {
+  distinctOn?: InputMaybe<Array<CategoryTagsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<Array<CategoryTagsOrderBy>>;
+  where?: InputMaybe<CategoryTagsBoolExp>;
 };
 
 
@@ -53,34 +64,28 @@ export type CategoriesCategoryToolsArgs = {
   where?: InputMaybe<CategoryToolsBoolExp>;
 };
 
-
-/** columns and relationships of "categories" */
-export type CategoriesTagsArgs = {
-  path?: InputMaybe<Scalars["String"]["input"]>;
-};
-
 /** Boolean expression to filter rows from the table "categories". All fields are combined with a logical 'AND'. */
 export type CategoriesBoolExp = {
   _and?: InputMaybe<Array<CategoriesBoolExp>>;
   _not?: InputMaybe<CategoriesBoolExp>;
   _or?: InputMaybe<Array<CategoriesBoolExp>>;
+  categoryTags?: InputMaybe<CategoryTagsBoolExp>;
   categoryTools?: InputMaybe<CategoryToolsBoolExp>;
   createdAt?: InputMaybe<TimestamptzComparisonExp>;
   description?: InputMaybe<StringComparisonExp>;
   id?: InputMaybe<UuidComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
-  tags?: InputMaybe<JsonbComparisonExp>;
   updatedAt?: InputMaybe<TimestamptzComparisonExp>;
 };
 
 /** Ordering options when selecting data from "categories". */
 export type CategoriesOrderBy = {
+  categoryTagsAggregate?: InputMaybe<CategoryTagsAggregateOrderBy>;
   categoryToolsAggregate?: InputMaybe<CategoryToolsAggregateOrderBy>;
   createdAt?: InputMaybe<OrderBy>;
   description?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
-  tags?: InputMaybe<OrderBy>;
   updatedAt?: InputMaybe<OrderBy>;
 };
 
@@ -94,8 +99,6 @@ export enum CategoriesSelectColumn {
   Id = "id",
   /** column name */
   Name = "name",
-  /** column name */
-  Tags = "tags",
   /** column name */
   UpdatedAt = "updatedAt"
 }
@@ -114,8 +117,158 @@ export type CategoriesStreamCursorValueInput = {
   description?: InputMaybe<Scalars["String"]["input"]>;
   id?: InputMaybe<Scalars["uuid"]["input"]>;
   name?: InputMaybe<Scalars["String"]["input"]>;
-  tags?: InputMaybe<Scalars["jsonb"]["input"]>;
   updatedAt?: InputMaybe<Scalars["timestamptz"]["input"]>;
+};
+
+/** columns and relationships of "category_tags" */
+export type CategoryTags = {
+  __typename?: "CategoryTags";
+  /** An object relationship */
+  category: Categories;
+  categoryId: Scalars["uuid"]["output"];
+  createdAt?: Maybe<Scalars["timestamptz"]["output"]>;
+  creationType: Scalars["Int"]["output"];
+  id: Scalars["uuid"]["output"];
+  /** An object relationship */
+  tag: Tags;
+  tagId: Scalars["uuid"]["output"];
+  updatedAt?: Maybe<Scalars["timestamptz"]["output"]>;
+};
+
+/** order by aggregate values of table "category_tags" */
+export type CategoryTagsAggregateOrderBy = {
+  avg?: InputMaybe<CategoryTagsAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<CategoryTagsMaxOrderBy>;
+  min?: InputMaybe<CategoryTagsMinOrderBy>;
+  stddev?: InputMaybe<CategoryTagsStddevOrderBy>;
+  stddevPop?: InputMaybe<CategoryTagsStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<CategoryTagsStddevSampOrderBy>;
+  sum?: InputMaybe<CategoryTagsSumOrderBy>;
+  varPop?: InputMaybe<CategoryTagsVarPopOrderBy>;
+  varSamp?: InputMaybe<CategoryTagsVarSampOrderBy>;
+  variance?: InputMaybe<CategoryTagsVarianceOrderBy>;
+};
+
+/** order by avg() on columns of table "category_tags" */
+export type CategoryTagsAvgOrderBy = {
+  creationType?: InputMaybe<OrderBy>;
+};
+
+/** Boolean expression to filter rows from the table "category_tags". All fields are combined with a logical 'AND'. */
+export type CategoryTagsBoolExp = {
+  _and?: InputMaybe<Array<CategoryTagsBoolExp>>;
+  _not?: InputMaybe<CategoryTagsBoolExp>;
+  _or?: InputMaybe<Array<CategoryTagsBoolExp>>;
+  category?: InputMaybe<CategoriesBoolExp>;
+  categoryId?: InputMaybe<UuidComparisonExp>;
+  createdAt?: InputMaybe<TimestamptzComparisonExp>;
+  creationType?: InputMaybe<IntComparisonExp>;
+  id?: InputMaybe<UuidComparisonExp>;
+  tag?: InputMaybe<TagsBoolExp>;
+  tagId?: InputMaybe<UuidComparisonExp>;
+  updatedAt?: InputMaybe<TimestamptzComparisonExp>;
+};
+
+/** order by max() on columns of table "category_tags" */
+export type CategoryTagsMaxOrderBy = {
+  categoryId?: InputMaybe<OrderBy>;
+  createdAt?: InputMaybe<OrderBy>;
+  creationType?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  tagId?: InputMaybe<OrderBy>;
+  updatedAt?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "category_tags" */
+export type CategoryTagsMinOrderBy = {
+  categoryId?: InputMaybe<OrderBy>;
+  createdAt?: InputMaybe<OrderBy>;
+  creationType?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  tagId?: InputMaybe<OrderBy>;
+  updatedAt?: InputMaybe<OrderBy>;
+};
+
+/** Ordering options when selecting data from "category_tags". */
+export type CategoryTagsOrderBy = {
+  category?: InputMaybe<CategoriesOrderBy>;
+  categoryId?: InputMaybe<OrderBy>;
+  createdAt?: InputMaybe<OrderBy>;
+  creationType?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  tag?: InputMaybe<TagsOrderBy>;
+  tagId?: InputMaybe<OrderBy>;
+  updatedAt?: InputMaybe<OrderBy>;
+};
+
+/** select columns of table "category_tags" */
+export enum CategoryTagsSelectColumn {
+  /** column name */
+  CategoryId = "categoryId",
+  /** column name */
+  CreatedAt = "createdAt",
+  /** column name */
+  CreationType = "creationType",
+  /** column name */
+  Id = "id",
+  /** column name */
+  TagId = "tagId",
+  /** column name */
+  UpdatedAt = "updatedAt"
+}
+
+/** order by stddev() on columns of table "category_tags" */
+export type CategoryTagsStddevOrderBy = {
+  creationType?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevPop() on columns of table "category_tags" */
+export type CategoryTagsStddevPopOrderBy = {
+  creationType?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevSamp() on columns of table "category_tags" */
+export type CategoryTagsStddevSampOrderBy = {
+  creationType?: InputMaybe<OrderBy>;
+};
+
+/** Streaming cursor of the table "category_tags" */
+export type CategoryTagsStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: CategoryTagsStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type CategoryTagsStreamCursorValueInput = {
+  categoryId?: InputMaybe<Scalars["uuid"]["input"]>;
+  createdAt?: InputMaybe<Scalars["timestamptz"]["input"]>;
+  creationType?: InputMaybe<Scalars["Int"]["input"]>;
+  id?: InputMaybe<Scalars["uuid"]["input"]>;
+  tagId?: InputMaybe<Scalars["uuid"]["input"]>;
+  updatedAt?: InputMaybe<Scalars["timestamptz"]["input"]>;
+};
+
+/** order by sum() on columns of table "category_tags" */
+export type CategoryTagsSumOrderBy = {
+  creationType?: InputMaybe<OrderBy>;
+};
+
+/** order by varPop() on columns of table "category_tags" */
+export type CategoryTagsVarPopOrderBy = {
+  creationType?: InputMaybe<OrderBy>;
+};
+
+/** order by varSamp() on columns of table "category_tags" */
+export type CategoryTagsVarSampOrderBy = {
+  creationType?: InputMaybe<OrderBy>;
+};
+
+/** order by variance() on columns of table "category_tags" */
+export type CategoryTagsVarianceOrderBy = {
+  creationType?: InputMaybe<OrderBy>;
 };
 
 /** columns and relationships of "category_tools" */
@@ -653,6 +806,90 @@ export type StringComparisonExp = {
   _similar?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+/** columns and relationships of "tags" */
+export type Tags = {
+  __typename?: "Tags";
+  /** An array relationship */
+  categoryTags: Array<CategoryTags>;
+  createdAt?: Maybe<Scalars["timestamptz"]["output"]>;
+  id: Scalars["uuid"]["output"];
+  tag: Scalars["String"]["output"];
+  /** An array relationship */
+  toolTags: Array<ToolTags>;
+  updatedAt?: Maybe<Scalars["timestamptz"]["output"]>;
+};
+
+
+/** columns and relationships of "tags" */
+export type TagsCategoryTagsArgs = {
+  distinctOn?: InputMaybe<Array<CategoryTagsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<Array<CategoryTagsOrderBy>>;
+  where?: InputMaybe<CategoryTagsBoolExp>;
+};
+
+
+/** columns and relationships of "tags" */
+export type TagsToolTagsArgs = {
+  distinctOn?: InputMaybe<Array<ToolTagsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<Array<ToolTagsOrderBy>>;
+  where?: InputMaybe<ToolTagsBoolExp>;
+};
+
+/** Boolean expression to filter rows from the table "tags". All fields are combined with a logical 'AND'. */
+export type TagsBoolExp = {
+  _and?: InputMaybe<Array<TagsBoolExp>>;
+  _not?: InputMaybe<TagsBoolExp>;
+  _or?: InputMaybe<Array<TagsBoolExp>>;
+  categoryTags?: InputMaybe<CategoryTagsBoolExp>;
+  createdAt?: InputMaybe<TimestamptzComparisonExp>;
+  id?: InputMaybe<UuidComparisonExp>;
+  tag?: InputMaybe<StringComparisonExp>;
+  toolTags?: InputMaybe<ToolTagsBoolExp>;
+  updatedAt?: InputMaybe<TimestamptzComparisonExp>;
+};
+
+/** Ordering options when selecting data from "tags". */
+export type TagsOrderBy = {
+  categoryTagsAggregate?: InputMaybe<CategoryTagsAggregateOrderBy>;
+  createdAt?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  tag?: InputMaybe<OrderBy>;
+  toolTagsAggregate?: InputMaybe<ToolTagsAggregateOrderBy>;
+  updatedAt?: InputMaybe<OrderBy>;
+};
+
+/** select columns of table "tags" */
+export enum TagsSelectColumn {
+  /** column name */
+  CreatedAt = "createdAt",
+  /** column name */
+  Id = "id",
+  /** column name */
+  Tag = "tag",
+  /** column name */
+  UpdatedAt = "updatedAt"
+}
+
+/** Streaming cursor of the table "tags" */
+export type TagsStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: TagsStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type TagsStreamCursorValueInput = {
+  createdAt?: InputMaybe<Scalars["timestamptz"]["input"]>;
+  id?: InputMaybe<Scalars["uuid"]["input"]>;
+  tag?: InputMaybe<Scalars["String"]["input"]>;
+  updatedAt?: InputMaybe<Scalars["timestamptz"]["input"]>;
+};
+
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
 export type TimestamptzComparisonExp = {
   _eq?: InputMaybe<Scalars["timestamptz"]["input"]>;
@@ -853,6 +1090,157 @@ export type ToolDataVarianceOrderBy = {
   stars?: InputMaybe<OrderBy>;
 };
 
+/** columns and relationships of "tool_tags" */
+export type ToolTags = {
+  __typename?: "ToolTags";
+  createdAt?: Maybe<Scalars["timestamptz"]["output"]>;
+  creationType: Scalars["Int"]["output"];
+  id: Scalars["uuid"]["output"];
+  /** An object relationship */
+  tag: Tags;
+  tagId: Scalars["uuid"]["output"];
+  /** An object relationship */
+  tool: Tools;
+  toolId: Scalars["uuid"]["output"];
+  updatedAt?: Maybe<Scalars["timestamptz"]["output"]>;
+};
+
+/** order by aggregate values of table "tool_tags" */
+export type ToolTagsAggregateOrderBy = {
+  avg?: InputMaybe<ToolTagsAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<ToolTagsMaxOrderBy>;
+  min?: InputMaybe<ToolTagsMinOrderBy>;
+  stddev?: InputMaybe<ToolTagsStddevOrderBy>;
+  stddevPop?: InputMaybe<ToolTagsStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<ToolTagsStddevSampOrderBy>;
+  sum?: InputMaybe<ToolTagsSumOrderBy>;
+  varPop?: InputMaybe<ToolTagsVarPopOrderBy>;
+  varSamp?: InputMaybe<ToolTagsVarSampOrderBy>;
+  variance?: InputMaybe<ToolTagsVarianceOrderBy>;
+};
+
+/** order by avg() on columns of table "tool_tags" */
+export type ToolTagsAvgOrderBy = {
+  creationType?: InputMaybe<OrderBy>;
+};
+
+/** Boolean expression to filter rows from the table "tool_tags". All fields are combined with a logical 'AND'. */
+export type ToolTagsBoolExp = {
+  _and?: InputMaybe<Array<ToolTagsBoolExp>>;
+  _not?: InputMaybe<ToolTagsBoolExp>;
+  _or?: InputMaybe<Array<ToolTagsBoolExp>>;
+  createdAt?: InputMaybe<TimestamptzComparisonExp>;
+  creationType?: InputMaybe<IntComparisonExp>;
+  id?: InputMaybe<UuidComparisonExp>;
+  tag?: InputMaybe<TagsBoolExp>;
+  tagId?: InputMaybe<UuidComparisonExp>;
+  tool?: InputMaybe<ToolsBoolExp>;
+  toolId?: InputMaybe<UuidComparisonExp>;
+  updatedAt?: InputMaybe<TimestamptzComparisonExp>;
+};
+
+/** order by max() on columns of table "tool_tags" */
+export type ToolTagsMaxOrderBy = {
+  createdAt?: InputMaybe<OrderBy>;
+  creationType?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  tagId?: InputMaybe<OrderBy>;
+  toolId?: InputMaybe<OrderBy>;
+  updatedAt?: InputMaybe<OrderBy>;
+};
+
+/** order by min() on columns of table "tool_tags" */
+export type ToolTagsMinOrderBy = {
+  createdAt?: InputMaybe<OrderBy>;
+  creationType?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  tagId?: InputMaybe<OrderBy>;
+  toolId?: InputMaybe<OrderBy>;
+  updatedAt?: InputMaybe<OrderBy>;
+};
+
+/** Ordering options when selecting data from "tool_tags". */
+export type ToolTagsOrderBy = {
+  createdAt?: InputMaybe<OrderBy>;
+  creationType?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  tag?: InputMaybe<TagsOrderBy>;
+  tagId?: InputMaybe<OrderBy>;
+  tool?: InputMaybe<ToolsOrderBy>;
+  toolId?: InputMaybe<OrderBy>;
+  updatedAt?: InputMaybe<OrderBy>;
+};
+
+/** select columns of table "tool_tags" */
+export enum ToolTagsSelectColumn {
+  /** column name */
+  CreatedAt = "createdAt",
+  /** column name */
+  CreationType = "creationType",
+  /** column name */
+  Id = "id",
+  /** column name */
+  TagId = "tagId",
+  /** column name */
+  ToolId = "toolId",
+  /** column name */
+  UpdatedAt = "updatedAt"
+}
+
+/** order by stddev() on columns of table "tool_tags" */
+export type ToolTagsStddevOrderBy = {
+  creationType?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevPop() on columns of table "tool_tags" */
+export type ToolTagsStddevPopOrderBy = {
+  creationType?: InputMaybe<OrderBy>;
+};
+
+/** order by stddevSamp() on columns of table "tool_tags" */
+export type ToolTagsStddevSampOrderBy = {
+  creationType?: InputMaybe<OrderBy>;
+};
+
+/** Streaming cursor of the table "tool_tags" */
+export type ToolTagsStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: ToolTagsStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ToolTagsStreamCursorValueInput = {
+  createdAt?: InputMaybe<Scalars["timestamptz"]["input"]>;
+  creationType?: InputMaybe<Scalars["Int"]["input"]>;
+  id?: InputMaybe<Scalars["uuid"]["input"]>;
+  tagId?: InputMaybe<Scalars["uuid"]["input"]>;
+  toolId?: InputMaybe<Scalars["uuid"]["input"]>;
+  updatedAt?: InputMaybe<Scalars["timestamptz"]["input"]>;
+};
+
+/** order by sum() on columns of table "tool_tags" */
+export type ToolTagsSumOrderBy = {
+  creationType?: InputMaybe<OrderBy>;
+};
+
+/** order by varPop() on columns of table "tool_tags" */
+export type ToolTagsVarPopOrderBy = {
+  creationType?: InputMaybe<OrderBy>;
+};
+
+/** order by varSamp() on columns of table "tool_tags" */
+export type ToolTagsVarSampOrderBy = {
+  creationType?: InputMaybe<OrderBy>;
+};
+
+/** order by variance() on columns of table "tool_tags" */
+export type ToolTagsVarianceOrderBy = {
+  creationType?: InputMaybe<OrderBy>;
+};
+
 /** columns and relationships of "tools" */
 export type Tools = {
   __typename?: "Tools";
@@ -874,9 +1262,10 @@ export type Tools = {
   repositoryUrl?: Maybe<Scalars["String"]["output"]>;
   /** An array relationship */
   stackTools: Array<StackTools>;
-  tags: Scalars["jsonb"]["output"];
   /** An array relationship */
   toolData: Array<ToolData>;
+  /** An array relationship */
+  toolTags: Array<ToolTags>;
   updatedAt?: Maybe<Scalars["timestamptz"]["output"]>;
   updatedBy?: Maybe<Scalars["uuid"]["output"]>;
   /** An object relationship */
@@ -914,18 +1303,22 @@ export type ToolsStackToolsArgs = {
 
 
 /** columns and relationships of "tools" */
-export type ToolsTagsArgs = {
-  path?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-
-/** columns and relationships of "tools" */
 export type ToolsToolDataArgs = {
   distinctOn?: InputMaybe<Array<ToolDataSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   offset?: InputMaybe<Scalars["Int"]["input"]>;
   orderBy?: InputMaybe<Array<ToolDataOrderBy>>;
   where?: InputMaybe<ToolDataBoolExp>;
+};
+
+
+/** columns and relationships of "tools" */
+export type ToolsToolTagsArgs = {
+  distinctOn?: InputMaybe<Array<ToolTagsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<Array<ToolTagsOrderBy>>;
+  where?: InputMaybe<ToolTagsBoolExp>;
 };
 
 /** order by aggregate values of table "tools" */
@@ -956,8 +1349,8 @@ export type ToolsBoolExp = {
   ogData?: InputMaybe<JsonbComparisonExp>;
   repositoryUrl?: InputMaybe<StringComparisonExp>;
   stackTools?: InputMaybe<StackToolsBoolExp>;
-  tags?: InputMaybe<JsonbComparisonExp>;
   toolData?: InputMaybe<ToolDataBoolExp>;
+  toolTags?: InputMaybe<ToolTagsBoolExp>;
   updatedAt?: InputMaybe<TimestamptzComparisonExp>;
   updatedBy?: InputMaybe<UuidComparisonExp>;
   user?: InputMaybe<UsersBoolExp>;
@@ -1017,8 +1410,8 @@ export type ToolsOrderBy = {
   ogData?: InputMaybe<OrderBy>;
   repositoryUrl?: InputMaybe<OrderBy>;
   stackToolsAggregate?: InputMaybe<StackToolsAggregateOrderBy>;
-  tags?: InputMaybe<OrderBy>;
   toolDataAggregate?: InputMaybe<ToolDataAggregateOrderBy>;
+  toolTagsAggregate?: InputMaybe<ToolTagsAggregateOrderBy>;
   updatedAt?: InputMaybe<OrderBy>;
   updatedBy?: InputMaybe<OrderBy>;
   user?: InputMaybe<UsersOrderBy>;
@@ -1057,8 +1450,6 @@ export enum ToolsSelectColumn {
   /** column name */
   RepositoryUrl = "repositoryUrl",
   /** column name */
-  Tags = "tags",
-  /** column name */
   UpdatedAt = "updatedAt",
   /** column name */
   UpdatedBy = "updatedBy",
@@ -1090,7 +1481,6 @@ export type ToolsStreamCursorValueInput = {
   name?: InputMaybe<Scalars["String"]["input"]>;
   ogData?: InputMaybe<Scalars["jsonb"]["input"]>;
   repositoryUrl?: InputMaybe<Scalars["String"]["input"]>;
-  tags?: InputMaybe<Scalars["jsonb"]["input"]>;
   updatedAt?: InputMaybe<Scalars["timestamptz"]["input"]>;
   updatedBy?: InputMaybe<Scalars["uuid"]["input"]>;
   websiteUrl?: InputMaybe<Scalars["String"]["input"]>;
@@ -1249,6 +1639,10 @@ export type Query_Root = {
   /** fetch data from the table: "categories" using primary key columns */
   categoriesByPk?: Maybe<Categories>;
   /** An array relationship */
+  categoryTags: Array<CategoryTags>;
+  /** fetch data from the table: "category_tags" using primary key columns */
+  categoryTagsByPk?: Maybe<CategoryTags>;
+  /** An array relationship */
   categoryTools: Array<CategoryTools>;
   /** fetch data from the table: "category_tools" using primary key columns */
   categoryToolsByPk?: Maybe<CategoryTools>;
@@ -1264,10 +1658,18 @@ export type Query_Root = {
   stacks: Array<Stacks>;
   /** fetch data from the table: "stacks" using primary key columns */
   stacksByPk?: Maybe<Stacks>;
+  /** fetch data from the table: "tags" */
+  tags: Array<Tags>;
+  /** fetch data from the table: "tags" using primary key columns */
+  tagsByPk?: Maybe<Tags>;
   /** An array relationship */
   toolData: Array<ToolData>;
   /** fetch data from the table: "tool_data" using primary key columns */
   toolDataByPk?: Maybe<ToolData>;
+  /** An array relationship */
+  toolTags: Array<ToolTags>;
+  /** fetch data from the table: "tool_tags" using primary key columns */
+  toolTagsByPk?: Maybe<ToolTags>;
   /** An array relationship */
   tools: Array<Tools>;
   /** fetch data from the table: "tools" using primary key columns */
@@ -1289,6 +1691,20 @@ export type Query_RootCategoriesArgs = {
 
 
 export type Query_RootCategoriesByPkArgs = {
+  id: Scalars["uuid"]["input"];
+};
+
+
+export type Query_RootCategoryTagsArgs = {
+  distinctOn?: InputMaybe<Array<CategoryTagsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<Array<CategoryTagsOrderBy>>;
+  where?: InputMaybe<CategoryTagsBoolExp>;
+};
+
+
+export type Query_RootCategoryTagsByPkArgs = {
   id: Scalars["uuid"]["input"];
 };
 
@@ -1349,6 +1765,20 @@ export type Query_RootStacksByPkArgs = {
 };
 
 
+export type Query_RootTagsArgs = {
+  distinctOn?: InputMaybe<Array<TagsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<Array<TagsOrderBy>>;
+  where?: InputMaybe<TagsBoolExp>;
+};
+
+
+export type Query_RootTagsByPkArgs = {
+  id: Scalars["uuid"]["input"];
+};
+
+
 export type Query_RootToolDataArgs = {
   distinctOn?: InputMaybe<Array<ToolDataSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]["input"]>;
@@ -1359,6 +1789,20 @@ export type Query_RootToolDataArgs = {
 
 
 export type Query_RootToolDataByPkArgs = {
+  id: Scalars["uuid"]["input"];
+};
+
+
+export type Query_RootToolTagsArgs = {
+  distinctOn?: InputMaybe<Array<ToolTagsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<Array<ToolTagsOrderBy>>;
+  where?: InputMaybe<ToolTagsBoolExp>;
+};
+
+
+export type Query_RootToolTagsByPkArgs = {
   id: Scalars["uuid"]["input"];
 };
 
@@ -1399,6 +1843,12 @@ export type Subscription_Root = {
   /** fetch data from the table in a streaming manner: "categories" */
   categoriesStream: Array<Categories>;
   /** An array relationship */
+  categoryTags: Array<CategoryTags>;
+  /** fetch data from the table: "category_tags" using primary key columns */
+  categoryTagsByPk?: Maybe<CategoryTags>;
+  /** fetch data from the table in a streaming manner: "category_tags" */
+  categoryTagsStream: Array<CategoryTags>;
+  /** An array relationship */
   categoryTools: Array<CategoryTools>;
   /** fetch data from the table: "category_tools" using primary key columns */
   categoryToolsByPk?: Maybe<CategoryTools>;
@@ -1422,12 +1872,24 @@ export type Subscription_Root = {
   stacksByPk?: Maybe<Stacks>;
   /** fetch data from the table in a streaming manner: "stacks" */
   stacksStream: Array<Stacks>;
+  /** fetch data from the table: "tags" */
+  tags: Array<Tags>;
+  /** fetch data from the table: "tags" using primary key columns */
+  tagsByPk?: Maybe<Tags>;
+  /** fetch data from the table in a streaming manner: "tags" */
+  tagsStream: Array<Tags>;
   /** An array relationship */
   toolData: Array<ToolData>;
   /** fetch data from the table: "tool_data" using primary key columns */
   toolDataByPk?: Maybe<ToolData>;
   /** fetch data from the table in a streaming manner: "tool_data" */
   toolDataStream: Array<ToolData>;
+  /** An array relationship */
+  toolTags: Array<ToolTags>;
+  /** fetch data from the table: "tool_tags" using primary key columns */
+  toolTagsByPk?: Maybe<ToolTags>;
+  /** fetch data from the table in a streaming manner: "tool_tags" */
+  toolTagsStream: Array<ToolTags>;
   /** An array relationship */
   tools: Array<Tools>;
   /** fetch data from the table: "tools" using primary key columns */
@@ -1461,6 +1923,27 @@ export type Subscription_RootCategoriesStreamArgs = {
   batchSize: Scalars["Int"]["input"];
   cursor: Array<InputMaybe<CategoriesStreamCursorInput>>;
   where?: InputMaybe<CategoriesBoolExp>;
+};
+
+
+export type Subscription_RootCategoryTagsArgs = {
+  distinctOn?: InputMaybe<Array<CategoryTagsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<Array<CategoryTagsOrderBy>>;
+  where?: InputMaybe<CategoryTagsBoolExp>;
+};
+
+
+export type Subscription_RootCategoryTagsByPkArgs = {
+  id: Scalars["uuid"]["input"];
+};
+
+
+export type Subscription_RootCategoryTagsStreamArgs = {
+  batchSize: Scalars["Int"]["input"];
+  cursor: Array<InputMaybe<CategoryTagsStreamCursorInput>>;
+  where?: InputMaybe<CategoryTagsBoolExp>;
 };
 
 
@@ -1548,6 +2031,27 @@ export type Subscription_RootStacksStreamArgs = {
 };
 
 
+export type Subscription_RootTagsArgs = {
+  distinctOn?: InputMaybe<Array<TagsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<Array<TagsOrderBy>>;
+  where?: InputMaybe<TagsBoolExp>;
+};
+
+
+export type Subscription_RootTagsByPkArgs = {
+  id: Scalars["uuid"]["input"];
+};
+
+
+export type Subscription_RootTagsStreamArgs = {
+  batchSize: Scalars["Int"]["input"];
+  cursor: Array<InputMaybe<TagsStreamCursorInput>>;
+  where?: InputMaybe<TagsBoolExp>;
+};
+
+
 export type Subscription_RootToolDataArgs = {
   distinctOn?: InputMaybe<Array<ToolDataSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]["input"]>;
@@ -1566,6 +2070,27 @@ export type Subscription_RootToolDataStreamArgs = {
   batchSize: Scalars["Int"]["input"];
   cursor: Array<InputMaybe<ToolDataStreamCursorInput>>;
   where?: InputMaybe<ToolDataBoolExp>;
+};
+
+
+export type Subscription_RootToolTagsArgs = {
+  distinctOn?: InputMaybe<Array<ToolTagsSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<Array<ToolTagsOrderBy>>;
+  where?: InputMaybe<ToolTagsBoolExp>;
+};
+
+
+export type Subscription_RootToolTagsByPkArgs = {
+  id: Scalars["uuid"]["input"];
+};
+
+
+export type Subscription_RootToolTagsStreamArgs = {
+  batchSize: Scalars["Int"]["input"];
+  cursor: Array<InputMaybe<ToolTagsStreamCursorInput>>;
+  where?: InputMaybe<ToolTagsBoolExp>;
 };
 
 
@@ -1610,10 +2135,13 @@ export type Subscription_RootUsersStreamArgs = {
   where?: InputMaybe<UsersBoolExp>;
 };
 
-export type GetAllToolsForPreviewQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetToolsForPreviewQueryVariables = Exact<{
+  limit?: Scalars["Int"]["input"];
+  offset?: Scalars["Int"]["input"];
+}>;
 
 
-export type GetAllToolsForPreviewQuery = { __typename?: "query_root", tools: Array<{ __typename?: "Tools", id: any, name: string, description?: string | null, iconIdentifier?: string | null }> };
+export type GetToolsForPreviewQuery = { __typename?: "query_root", tools: Array<{ __typename?: "Tools", id: any, name: string, description?: string | null, iconIdentifier?: string | null, toolData: Array<{ __typename?: "ToolData", stars?: number | null }> }> };
 
 export type GetToolByIdQueryVariables = Exact<{
   id: Scalars["uuid"]["input"];

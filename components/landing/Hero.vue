@@ -32,7 +32,7 @@
                     </UButton>
                 </div>
             </div>
-            <div class="w-3/5 bg-gray-600 aspect-[1_/_0.66]" />
+            <div class="w-3/5 bg-gray-600 h-[60vh]" />
         </div>
     </div>
 </template>

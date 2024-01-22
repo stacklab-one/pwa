@@ -18,7 +18,6 @@ onKeyDown("k", (event) => {
     if (!event.metaKey) {
         return;
     }
-    console.log("meta k pressed");
     searchValue.value = "";
     input.value?.focus();
 });
@@ -26,25 +25,22 @@ onKeyDown("k", (event) => {
 </script>
 
 <template>
-    <div class="flex items-center">
-        <!-- <input
+    <div class="flex items-center relative bg-mineshaft-700 py-1 px-2 rounded-xl gap-2">
+        <Icon
+            name="i-heroicons-magnifying-glass-20-solid"
+            size="32"
+        />
+        <input
             ref="input"
             v-model="searchValue"
-            type="text"
-            class="bg-transparent font-light outline-none text-white w-full"
+            class="bg-transparent w-full outline-none"
             :placeholder="props.placeholder"
-        > -->
-        <UInput
-            icon="i-heroicons-magnifying-glass-20-solid"
-            size="lg"
-            color="white"
-            class="w-full"
-            :trailing="false"
-            :placeholder="props.placeholder"
-        />
+        >
 
-        <div class="scale-110 w-12">
-            <UKbd>{{ metaSymbol }}</UKbd>
+        <div class="scale-110 w-12 flex gap-1">
+            <UKbd class="">
+                {{ metaSymbol }}
+            </UKbd>
             <UKbd>K</UKbd>
         </div>
     </div>

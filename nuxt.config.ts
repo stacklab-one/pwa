@@ -5,13 +5,25 @@ export default defineNuxtConfig({
         "@vueuse/nuxt",
         "nuxt-icon",
         "@nuxt/ui",
-        "nuxt-graphql-client",
+        [
+            "nuxt-graphql-client",
+            {
+                watch: true,
+            },
+        ],
         [
             "@nuxtjs/eslint-module", 
             {
                 lintOnStart: true,
             },
         ],
+        ["nuxt-meilisearch", {
+            hostUrl: process.env.MEILI_HOST,
+            serverSideUsage: true,
+            adminApiKey: process.env.MEILI_API_KEY,
+            searchApiKey: process.env.MEILI_API_KEY,
+            cache: true,
+        }],
     ],
     runtimeConfig: {
         "graphql-client": {

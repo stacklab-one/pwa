@@ -1,14 +1,21 @@
-query getAllToolsForPreview {
-    tools {
+query getToolsForPreview($limit: Int! = 30, $offset: Int! = 0) {
+    tools(limit: $limit, offset: $offset) {
         id
         name
         description
         iconIdentifier
-        tags
+        ogData
         toolData(limit: 1, orderBy: {
             createdAt: DESC_NULLS_LAST
         }) {
             stars
+        }
+        toolTags {
+            id
+            tag {
+                id
+                tag
+            }
         }
     }
 }
@@ -38,6 +45,12 @@ query getToolById($id: uuid!) {
             category {
                 id
                 name
+            }
+        }
+        toolTags {
+            tag {
+                id
+                tag
             }
         }
     }
