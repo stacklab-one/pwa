@@ -1,3 +1,2 @@
-export default function useExpertView() {
-    return useLocalStorage("expertView", false);
-}
+export const isInExpertView = () => useState("isInExpertView", () => false);
+

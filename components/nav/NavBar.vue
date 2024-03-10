@@ -17,6 +17,8 @@ const navButtons = ref<NavButton[]>([
     },
 ]);
 
+const auth = useAuth();
+
 </script>
 
 <template>
@@ -33,7 +35,7 @@ const navButtons = ref<NavButton[]>([
             </div>
         </div>
         <div>
-            <NuxtLink to="/account">
+            <NuxtLink :to="auth.isLoggedIn ? '/account' : '/login'">
                 <Icon
                     name="icon-park-outline:user"
                     class="text-xl"

@@ -51,13 +51,15 @@ const props = defineProps<{
                 />
             </div>
         </div>
-        <div 
-            v-if="useExpertView().value"
-            class="bg-mineshaft-900 p-2 flex justify-end"
-        >
-            <div class="flex items-center text-xs font-medium">
-                <span class="">{{ (category.score / 100).toFixed(0) }}</span>
+        <ClientOnly>
+            <div 
+                v-if="isInExpertView().value"
+                class="bg-mineshaft-900 p-2 flex justify-end"
+            >
+                <div class="flex items-center text-xs font-medium">
+                    <span class="">{{ (category.score / 100).toFixed(0) }}</span>
+                </div>
             </div>
-        </div>
+        </ClientOnly>
     </div>
 </template>

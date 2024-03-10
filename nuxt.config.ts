@@ -33,6 +33,9 @@ export default defineNuxtConfig({
                 },
             },
         },
+        public: {
+            apiUrl: "",
+        },
     },
     "graphql-client": {
     },

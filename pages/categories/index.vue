@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { SearchCategory } from "~/components/category/SearchListPreview.vue";
-import type { SearchTool } from "~/components/tool/SearchListPreview.vue";
 
 definePageMeta({
     layout: "app",
