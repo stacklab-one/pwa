@@ -9,9 +9,11 @@ export type SearchCategory = {
     score: number;
 }
 
-const props = defineProps<{
+type Props = {
     category: SearchCategory;
-}>();
+}
+
+defineProps<Props>();
 
 </script>
 

@@ -15,7 +15,7 @@ const tool = await GqlGetToolById({id: toolId.value});
 </script>
 
 <template>
-    <div>
+    <div class="max-w-[100vw] p-4 overflow-hidden">
         <pre>{{ tool }}</pre>
     </div>
 </template>

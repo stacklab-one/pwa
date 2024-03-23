@@ -24,12 +24,14 @@
                     >
                         Share a stack
                     </UButton>
-                    <UButton
-                        class="w-full flex justify-center font-normal py-2 text-lg rounded-xl"
-                        variant="outline"
-                    >
-                        Explore trending stacks
-                    </UButton>
+                    <NuxtLink to="trending">
+                        <UButton
+                            class="w-full flex justify-center font-normal py-2 text-lg rounded-xl"
+                            variant="outline"
+                        >
+                            Explore trending stacks
+                        </UButton>
+                    </NuxtLink>
                 </div>
             </div>
             <div class="w-3/5 bg-gray-600 h-[60vh]" />

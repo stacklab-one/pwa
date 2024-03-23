@@ -8,7 +8,5 @@ definePageMeta({
 </script>
 
 <template>
-    <div>
-        <span>test</span>
-    </div>
+    <div class="" />
 </template>
