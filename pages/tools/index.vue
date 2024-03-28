@@ -16,7 +16,7 @@ const tools = ref<SearchTool[]>([]);
 
 watchEffect(async () => {
     const response = await index.search(filterText.value, {
-        limit: filterText.value ? 50 : 500,
+        limit: filterText.value ? 50 : 100,
         showRankingScore: true,
     });
     tools.value = (response.hits as SearchTool[]).sort((a, b) => {

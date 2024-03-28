@@ -74,7 +74,7 @@ const { isOutside } = useMouseInElement(container);
         </div>
         <div class="min-h-12 w-full p-3 flex flex-wrap gap-2 items-start justify-start bg-mineshaft-800 group-hover:bg-mineshaft-700 transition-colors duration-150 overflow-y-auto">
             <div
-                v-for="toolTag of tool.toolTags"
+                v-for="toolTag of tool.toolTags.slice(0, 5)"
                 :key="toolTag.id"
                 @click.stop.prevent
             >

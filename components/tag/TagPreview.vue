@@ -11,8 +11,9 @@ const props = defineProps<Props>();
 
 <template>
     <UButton
-        class="bg-gray-200 text-gray-800"
+        color="amber"
         variant="soft"
+        class="transition-colors duration-200"
     >
         <Icon name="clarity:hashtag-solid" />
         <span class="text-xs">{{ props.tag }}</span>

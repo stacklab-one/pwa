@@ -20,7 +20,7 @@ defineProps<Props>();
 <template>
     <div 
         ref="container"
-        class="group grid grid-rows-[min-content_1fr_5rem] bg-mineshaft hover:bg-mineshaft-600 overflow-hidden rounded-lg shadow-xl transition-all duration-150"
+        class="group grid grid-rows-[min-content_1fr_max-content] bg-mineshaft hover:bg-mineshaft-600 overflow-hidden rounded-lg shadow-xl transition-all duration-150"
     >
         <div class="h-16 flex justify-between border-b-[0.5px] border-b-mineshaft-200 w-full px-4">
             <div class="flex items-center gap-2">
@@ -42,10 +42,11 @@ defineProps<Props>();
                 {{ category.description }}
             </p>
         </div>
-        <div class="min-h-12 w-full p-3 flex flex-wrap gap-2 items-start justify-start bg-mineshaft-800 group-hover:bg-mineshaft-700 transition-colors duration-150 overflow-y-auto">
+        <div class="w-full p-3 flex gap-2 items-start justify-start bg-mineshaft-800 group-hover:bg-mineshaft-700 transition-colors duration-150 overflow-x-auto">
             <div
                 v-for="tag of category.tags"
                 :key="tag"
+                class="whitespace-nowrap"
                 @click.stop.prevent
             >
                 <TagPreview

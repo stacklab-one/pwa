@@ -39,7 +39,7 @@ const { isOutside } = useMouseInElement(container);
 <template>
     <div 
         ref="container"
-        class="group grid grid-rows-[min-content_1fr_5rem] bg-mineshaft hover:bg-mineshaft-600 overflow-hidden rounded-lg shadow-xl transition-all duration-150"
+        class="group grid grid-rows-[min-content_1fr_max-content] bg-mineshaft hover:bg-mineshaft-600 overflow-hidden rounded-lg shadow-xl transition-all duration-150"
     >
         <div class="h-16 flex justify-between border-b-[0.5px] border-b-mineshaft-200 w-full px-4">
             <div class="flex items-center gap-2">
@@ -81,10 +81,11 @@ const { isOutside } = useMouseInElement(container);
                 {{ tool.description }}
             </p>
         </div>
-        <div class="min-h-12 w-full p-3 flex flex-wrap gap-2 items-start justify-start bg-mineshaft-800 group-hover:bg-mineshaft-700 transition-colors duration-150 overflow-y-auto">
+        <div class="tag-container w-full py-2 px-3 flex gap-2 items-start justify-start bg-mineshaft-800 group-hover:bg-mineshaft-700 transition-colors duration-150 overflow-x-auto">
             <div
-                v-for="tag of tool.tags"
+                v-for="tag of tool.tags.slice(0, 5)"
                 :key="tag"
+                class="whitespace-nowrap"
                 @click.stop.prevent
             >
                 <TagPreview
@@ -104,3 +105,19 @@ const { isOutside } = useMouseInElement(container);
         </ClientOnly>
     </div>
 </template>
+
+<style lang="scss" scoped>
+
+.tag-container {
+    @apply transition-all duration-150;
+    scrollbar-color: #747783 #42434A;
+    scrollbar-width: thin;
+}
+
+.group:hover {
+    .tag-container {
+        scrollbar-color: #747783 #4d4f57;
+    }
+}
+
+</style>
